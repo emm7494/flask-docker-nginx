@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+
+        nginx:
+                build: ./nginx
+                container_name: nginx
+                volumes:
+                        - ./flask/app/static:/var/www/flask/static
+                        - ./flask/app/html:/var/www/flask/html
+                ports:
+                        - "8080:80"
+                depends_on:
+                        - flask
+
+        
+        flask:
+                build: ./flask
+                container_name: flask
+                volumes:
+                        - ./flask:/flask
+                env_file: ./flask/.flaskenv
+                env_file: ./flask/.env
+                # depends_on:
+                #         - nginx
