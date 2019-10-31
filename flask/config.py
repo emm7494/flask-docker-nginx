@@ -22,8 +22,8 @@ class Config(object):
 
     # Flask-Mail Extension
     MAIL_SERVER = os.environ.get("MAIL_SERVER") or "localhost"
-    MAIL_PORT = int(os.environ.get("MAIL_PORT")) or 8025
-    MAIL_USE_TLS = int(os.environ.get("MAIL_USE_TLS"))
+    MAIL_PORT = int(os.environ.get("MAIL_PORT") or 8025)
+    MAIL_USE_TLS = int(os.environ.get("MAIL_USE_TLS") or 1)
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     # Custom

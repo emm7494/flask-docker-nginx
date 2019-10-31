@@ -15,11 +15,11 @@ def create_app(config_class):
     app.register_blueprint(main_bp)
 
     # Logging errors to file
-    if not os.path.exists("logs"):
-        os.mkdir("logs")
+    if not os.path.exists("log"):
+        os.mkdir("log")
 
     file_handler = RotatingFileHandler(
-        "logs/wsgi-app.log", maxBytes=10240, backupCount=10
+        "log/app.log", maxBytes=10240, backupCount=10
     )
     file_handler.setFormatter(
         logging.Formatter(

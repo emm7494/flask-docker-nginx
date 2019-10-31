@@ -5,13 +5,13 @@
 BASE_DIR="$(dirname "$0")"
 
 make_file_here() {
-	if [[ ! -f "${TARGET:=$BASE_DIR/$FILENAME}" ]]; then
+	if [[ ! -d "${TARGET:=$BASE_DIR/$DIRNAME}" ]]; then
 		echo $TARGET
-		touch $TARGET && echo -e "$FILENAME created at $BASE_DIR/ !\n"
+		mkdir $TARGET && echo -e "$FILENAME created at $BASE_DIR/ !\n"
 		unset TARGET
 	fi
 }
 
-for FILENAME in "$@"; do
-	make_file_here "$FILENAME"
+for DIRNAME in "$@"; do
+	make_file_here "$DIRNAME"
 done
