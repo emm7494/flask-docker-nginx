@@ -1,17 +1,18 @@
 FROM python:3.8.0-buster
 
-WORKDIR /flask
+RUN groupadd -r -g 1000 emm7494 && useradd -rm -s /bin/bash -g emm7494 -u 1000 emm7494
+
+WORKDIR /home/emm7494/flask
 
 COPY requirements.txt .
-
+RUN chown -R emm7494:emm7494 /home/emm7494
+USER emm7494
 # Install the dependencies
-RUN pip install --no-cache-dir -r requirements.txt \
-    && mkdir -p /var/log/uwsgi
-# && touch /var/log/uwsgi/uwsgi_access.log \
-# && touch /var/log/uwsgi/uwsgi_error.log
-#  \
-# && chmod 766 -R /var/log/uwsgi
+RUN pip install --user --no-cache-dir -r requirements.txt
 
 EXPOSE 8080
+ENV PATH="/home/emm7494/.local/bin:$PATH"
+
 # run the command to start uWSGI
-CMD ["uwsgi", "app.ini"]
+CMD ["./start.sh"]
+

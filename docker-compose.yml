@@ -18,7 +18,7 @@ services:
                 build: ./flask
                 container_name: flask
                 volumes:
-                        - ./flask:/flask
+                        - ./flask:/home/emm7494/flask
                 env_file: ./flask/.flaskenv
                 env_file: ./flask/.env
                 # depends_on:
