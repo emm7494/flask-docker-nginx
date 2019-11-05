@@ -1,6 +1,18 @@
 version: "3"
 
 services:
+         
+        flask:
+                build: ./flask
+                container_name: flask
+                volumes:
+                        - ./flask:/home/emm7494/flask
+                env_file:
+                         ./flask/.flaskenv
+                env_file:
+                         ./flask/.env
+                # depends_on:
+                #         - nginx
 
         nginx:
                 build: ./nginx
@@ -9,17 +21,8 @@ services:
                         - ./flask/app/static:/var/www/flask/static
                         - ./flask/app/html:/var/www/flask/html
                 ports:
-                        - "8080:80"
-                depends_on:
-                        - flask
-
-        
-        flask:
-                build: ./flask
-                container_name: flask
-                volumes:
-                        - ./flask:/home/emm7494/flask
-                env_file: ./flask/.flaskenv
-                env_file: ./flask/.env
+                        - "80:80"
                 # depends_on:
-                #         - nginx
+                #         - flask
+
+       

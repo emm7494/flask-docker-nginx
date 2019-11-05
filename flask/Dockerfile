@@ -5,6 +5,7 @@ RUN groupadd -r -g 1000 emm7494 && useradd -rm -s /bin/bash -g emm7494 -u 1000 e
 WORKDIR /home/emm7494/flask
 
 COPY requirements.txt .
+
 RUN chown -R emm7494:emm7494 /home/emm7494
 USER emm7494
 # Install the dependencies
